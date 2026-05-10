@@ -90,36 +90,26 @@ class Extractor {
     }
 
     private fun findTitleInSubtree(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
-        // Title is typically the longest text in a TextView within the card
-        var best: AccessibilityNodeInfo? = null
-        var bestLen = 0
-        findTitleNode(node, 0, object {
-            var bestNode: AccessibilityNodeInfo? = null
-            var bestLength = 0
-        }.also {
-            findTitleRecursive(node, it)
-        })
-        return it.bestNode
-    }
+        var bestNode: AccessibilityNodeInfo? = null
+        var bestLength = 0
 
-    private fun findTitleRecursive(node: AccessibilityNodeInfo, state: TitleState, depth: Int = 0) {
-        val className = node.className?.toString() ?: ""
-
-        if (className.endsWith("TextView") && depth <= 5) {
-            val text = node.text?.toString() ?: ""
-            if (text.length in 4..80 && text.length > state.bestLength) {
-                state.bestNode = node
-                state.bestLength = text.length
+        fun search(n: AccessibilityNodeInfo, depth: Int) {
+            val className = n.className?.toString() ?: ""
+            if (className.endsWith("TextView") && depth <= 5) {
+                val text = n.text?.toString() ?: ""
+                if (text.length in 4..80 && text.length > bestLength) {
+                    bestNode = n
+                    bestLength = text.length
+                }
+            }
+            for (i in 0 until n.childCount) {
+                n.getChild(i)?.let { search(it, depth + 1) }
             }
         }
 
-        for (i in 0 until node.childCount) {
-            val child = node.getChild(i) ?: continue
-            findTitleRecursive(child, state, depth + 1)
-        }
+        search(node, 0)
+        return bestNode
     }
-
-    private class TitleState(var bestNode: AccessibilityNodeInfo? = null, var bestLength: Int = 0)
 
     private fun extractAuthor(card: AccessibilityNodeInfo): String? {
         return findAuthorInSubtree(card)?.text?.toString()?.trim()

@@ -12,6 +12,7 @@ import com.example.xhsbrowser.data.db.entity.BrowsingRecord
 import com.example.xhsbrowser.data.db.entity.Category
 import com.example.xhsbrowser.data.repository.RecordRepository
 import com.example.xhsbrowser.export.ExcelExporter
+import androidx.lifecycle.viewModelScope
 import com.example.xhsbrowser.util.DateUtils
 import kotlinx.coroutines.*
 import java.io.File
