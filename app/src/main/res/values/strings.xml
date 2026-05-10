@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XHS浏览记录</string>
+    <string name="accessibility_description">用于自动采集小红书浏览记录数据，所有数据纯本地存储，不会上传网络。</string>
+    <string name="tab_dashboard">今日概览</string>
+    <string name="tab_history">历史记录</string>
+    <string name="tab_stats">统计报表</string>
+    <string name="tab_settings">设置</string>
+    <string name="service_not_running">无障碍服务未开启</string>
+    <string name="service_running">正在采集数据</string>
+    <string name="service_guide">请前往 设置 > 无障碍 > XHS浏览记录 开启服务</string>
+    <string name="open_accessibility_settings">开启无障碍服务</string>
+    <string name="today_records">今日采集: %d 条</string>
+    <string name="export_success">导出成功: %s</string>
+    <string name="export_failed">导出失败</string>
+    <string name="no_data">暂无数据</string>
+    <string name="auto_scroll">自动滑动</string>
+    <string name="scroll_interval">滑动间隔</string>
+    <string name="export_excel">导出Excel报表</string>
+    <string name="category_filter">类目筛选</string>
+    <string name="all_categories">全部类目</string>
+    <string name="date_range">日期范围</string>
+    <string name="total_count">总计: %d 条</string>
+</resources>
